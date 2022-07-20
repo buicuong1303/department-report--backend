@@ -1,0 +1,60 @@
+version: '3.7'
+
+services:
+  department-report-backend:
+    container_name: department-report-backend-development
+    image: department-report-backend-development
+    build:
+      context: ./ #where Dockerfile to build
+      target: development
+    volumes:
+      - ./:/usr/src/app
+      - department-report-reports:/usr/src/app/public/reports/
+    ports:
+      - 3002:3000
+      - 9231:9229
+    # command: yarn run start
+    # command: yarn run start:dev
+    command: yarn run start:debug
+    networks:
+      - automation-network
+    depends_on:
+      - department-report-db
+    env_file:
+      - .env.development
+
+  department-report-db:
+    container_name: department-report-db
+    hostname: department-report-db
+    image: postgres:12
+    networks:
+      - automation-network
+    ports:
+      - 5434:5432
+    env_file:
+      - .env.development
+    volumes:
+      - department-report-pgdata:/var/lib/postgresql/data
+
+  department-report-redis-queue:
+    image: redis:alpine
+    container_name: department-report-redis-queue
+    hostname: department-report-redis-queue
+    volumes:
+      - department-report-redis-data:/data
+    networks:
+      - automation-network
+    ports:
+      - 6381:6379
+
+networks:
+  automation-network:
+    name: automation-network
+
+volumes:
+  department-report-pgdata:
+    name: department-report-pgdata
+  department-report-redis-data:
+    name: department-report-redis-data
+  department-report-reports:
+    name: department-report-reports

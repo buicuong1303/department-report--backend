@@ -1,0 +1,30 @@
+monday:
+  endpoint: 'https://api.monday.com/v2/'
+  endpointFile: 'https://api.monday.com/v2/file'
+  token: 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjExNjA3NjI0MywidWlkIjoyMjk1MTkyOCwiaWFkIjoiMjAyMS0wNy0wNlQwMDo0NzoyNC4wMjhaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6OTMzNjUzOSwicmduIjoidXNlMSJ9.sdNceIn06xxie7sdL3R-S_iIkMxlIeNsc6_QmCpFBUA'
+#eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjEyMjg0ODc0NSwidWlkIjoyNDE2MjU0MSwiaWFkIjoiMjAyMS0wOS0wMVQwMDoxNDoxMy4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6OTc4NDAzMCwicmduIjoidXNlMSJ9.OzbIb1p8WipPLRIMcNbK9mtveWgJ6AwappF4RdIoEKY
+#eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjExNjA3NjI0MywidWlkIjoyMjk1MTkyOCwiaWFkIjoiMjAyMS0wNy0wNlQwMDo0NzoyNC4wMjhaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6OTMzNjUzOSwicmduIjoidXNlMSJ9.sdNceIn06xxie7sdL3R-S_iIkMxlIeNsc6_QmCpFBUA
+
+db:
+  type: 'postgres'
+  port: '5432' #docker
+  database: 'department-report'
+  synchronize: false
+  host: 'department-report-db' #localhost if run non-docker
+  username: 'postgres'
+  password: 'postgres'
+
+jwt:
+  secret: 'justin1818!'
+
+microservices: 
+  automation-core:
+    auth-url: 'http://automation-core-backend:3000/auth'
+    apps-url: 'http://automation-core-backend:3000/apps'
+  backend-report:
+    report-url: 'http://department-report-backend-report:80/report'
+    
+app-id: 82c99418-b2b7-4d5d-ab8c-dd84a08b5b19
+
+cors:
+  frontend: 'http://localhost:4002'
